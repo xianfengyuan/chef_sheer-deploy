@@ -1,0 +1,11 @@
+#!/bin/sh
+
+SHEER_PORT="<%= node['sheer']['mgmt_port'] %>"
+SHEER_HOME="<%= node['sheer']['home'] %>"
+
+export NODE_PATH=$SHEER_HOME
+cd $SHEER_HOME
+exec 2>&1
+
+PORT=$SHEER_PORT exec chpst -u root /usr/local/bin/node $SHEER_HOME/<%= node['sheer']['route'] %>.js
+
